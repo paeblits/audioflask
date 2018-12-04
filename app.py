@@ -32,6 +32,8 @@ print("SELECTED Input Device id ", DEVICE_INDEX, " - ", p.get_device_info_by_hos
 print("\n - - -")
 
 # x = np.arange(0, 2 * CHUNK, 1)
+# create an evenly divided array for the freq spectrum. 0-44100
+xf = np.linspace(0, RATE, CHUNK)
 
 # stream object to get data from microphone
 stream = p.open(
@@ -46,16 +48,19 @@ stream = p.open(
 
 print('stream started')
 
-
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/audiofeed')
-def audiofeed():
-    return Response(get_sound_data(), mimetype="text/plain")
+@app.route('/wavefeed')
+def wavefeed():
+    return Response(get_sound_wave(), mimetype="text/plain")
 
-def get_sound_data():
+@app.route('/spectrumfeed')
+def spectrumfeed():
+    return Response(get_sound_freq(), mimetype="text/plain")
+
+def get_sound_wave():
     # get sound data
     # binary data
     data = stream.read(CHUNK)
@@ -66,12 +71,24 @@ def get_sound_data():
     # create np array and offset by 128
     data_np = np.array(data_int, dtype='b')[::2] + 128
 
-    # count = 0
-    # y = []
-    # for i in range(1,len(data_np),1):
-    #     tmparr = [i,data_np[i]]
-    #     y.append(tmparr)
-
     x = data_np.tolist()
+
+    yield str(x)
+
+def get_sound_freq():
+    # get sound data
+    # binary data
+    data = stream.read(CHUNK)
+
+    # convert data to integers, make np array, then offset it by 127
+    data_int = struct.unpack(str(2 * CHUNK) + 'B', data)
+
+    # create np array and offset by 128
+    #data_np = np.array(data_int, dtype='b')[::2] + 128
+
+    yf = fft(data_int)
+    yff = np.abs(yf[0:CHUNK]) / (128 * CHUNK)
+
+    x = yff.tolist()
 
     yield str(x)
