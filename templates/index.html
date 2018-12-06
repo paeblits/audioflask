@@ -8,13 +8,20 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
+    <!-- My CSS -->
+    <link rel="stylesheet" href="{{url_for('static', filename='mystyles.css')}}">
+
     <title>Audio stream analyzer</title>
   </head>
   <div>
 
-    <!--<div class="container-fliud" id="container-waveform" style="min-width: 310px; height: 600px; margin: 0 auto"></div>-->
-    <div class="container-fliud" id="container-spectrum" style="min-width: 310px; height: 600px; margin: 0 auto"></div>
-    <!--<h1 class="text-center">max index:</h1>-->
+    <div class="container">
+      <div class="row">
+        <div class="col-md justify-content-center" id="container-spectrum" style="min-width: 310px; height: 600px; margin: 0 auto"></div>
+      </div>
+    </div>
+
+    <hr>
 
     <div class="container">
       <!-- average -->
@@ -25,32 +32,39 @@
 
       <!-- max -->
       <div class="row">
-        <div class="col text-right">max value at 475-512</div>
-        <div class="col text-left"><p id="max" class=""></p></div>
+        <div class="col-sm text-right">max value at 475-512</div>
+        <div class="col-sm text-left"><p id="max" class=""></p></div>
       </div>
 
       <!-- index -->
       <div class="row">
-        <div class="col text-right">index</div>
+        <div class="col text-right">max value index</div>
         <div class="col text-left"><p id="myindex" class=""></p></div>
       </div>
 
     </div>
-    <div class="container">
-      <div id="alert-buzz" class="font-weight-bold alert alert-primary text-center" role="alert">Buzz detection</div>
+
+    <!-- When a buzz is detected a new banner will be added here -->
+    <div id="buzz-banners" class="container">
+      <div class="row"></div>
     </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <!-- My JavaScript init -->
+    <script src="{{url_for('static', filename='myinit.js')}}"></script>
+    <script src="{{url_for('static', filename='myanalyze.js')}}"></script>
+
+    <!-- Highcharts -->
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/data.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="{{url_for('static', filename='myinit.js')}}"></script>
-    <script src="{{url_for('static', filename='myanalyze.js')}}"></script>
-    <!--<script src="{{url_for('static', filename='mywaveform.js')}}"></script>-->
-    <script src="{{url_for('static', filename='myspectrum.js')}}"></script>
+    <script src="https://code.highcharts.com/themes/dark-unica.js"></script>
+
+    <script src="{{url_for('static', filename='my-spectrum-chart.js')}}"></script>
   </body>
 </html>
 

@@ -1,24 +1,21 @@
-function analyze(data) {
-    $('#alert-buzz').hide();
+var analyze = function(data) {
     // we're only going to look at the frequency spectrum between 475 and 512
     // because of peaks observed from listening to the dryer buzzing sound
 
-    var buzz = false;
-    var start = 475;
-    var end = 512;
-    var index = 498;
-    var sliced = data.slice(start, end);
-    var threshold = 0.0005;
+    sliced = data.slice(start, end);
+    d = new Date();
 
-    var max = Math.max.apply(Math,sliced);
-    var max_index = data.indexOf(max);
+    max = Math.max.apply(Math,sliced);
+    max_index = data.indexOf(max);
 
-    var sum = 0;
+    sum = 0;
+    avg = 0;
     for( var i = start; i < end; i++ ){
         sum += data[i];
     }
 
-    var avg = sum/data.length;
+    avg = sum/sliced.length;
+    peakVal = data[peakIndex]
 
    //console.log(max);
    // console.log(max_index);
@@ -26,13 +23,45 @@ function analyze(data) {
     $('p#max').html(max);
     $('p#myindex').html(max_index);
 
-    if(avg > threshold) {
-        console.log("BUZZ . . . avg = " + avg);
-        buzz = true;
+    if(avg > avgThresh && peakVal > 0.04) {
+        console.log("avg > " + avgThresh + " . . . avg = " + avg);
+        console.log("peakVal = " + peakVal)
+        if(buzzCount > buzzCountThresh) {
+            buzz = true;
+        } else {
+            now = d.getTime();
+            timeDiff = now - lastBuzzTime;
+            lastBuzzTime = now;
+            console.log("timeDiff = " + timeDiff);
+            if (timeDiff < 150) {
+                buzzCount++;
+            }
+        }
     }
 
+    // if we detected a buzz, display a banner and reset some vars
     if (buzz) {
-        $('#alert-buzz').show();
+        console.log("BUZZ!");
+        var banner = banner1 + "Buzz detected at " +  d.toString() + banner3;
+
+        // append a new banner at the top of the banners list
+        $('#buzz-banners').prepend(banner);
+        //$('#alert-buzz').show();
+        //$('#buzz-banners').first().text(buzzDisplayString);
+        lastBuzzTime = -1;
+        buzzCount = 0;
+        lastDisplayTime = d.getTime();
+        buzz = false;
     }
+
+    // check how long we've been displaying the Buzz banner
+//    if (displaying) {
+//        displayTimeDiff = d.getTime() - displayStartTime;
+//        if(displayTimeDiff > 60000) {
+//            console.log("turning off display. Time diff = " + displayTimeDiff + " ms");
+//            $('#alert-buzz').hide();
+//            displaying = false;
+//        }
+//    }
 
 }
