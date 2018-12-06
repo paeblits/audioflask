@@ -10,11 +10,36 @@
 
     <title>Audio stream analyzer</title>
   </head>
-  <body>
+  <div>
 
-    <div class="container-fliud" id="container-waveform" style="min-width: 310px; height: 600px; margin: 0 auto"></div>
-    <!--<h1 class="text-center">Average:</h1>-->
-    <h2 class="text-center" id="average"></h2>
+    <!--<div class="container-fliud" id="container-waveform" style="min-width: 310px; height: 600px; margin: 0 auto"></div>-->
+    <div class="container-fliud" id="container-spectrum" style="min-width: 310px; height: 600px; margin: 0 auto"></div>
+    <!--<h1 class="text-center">max index:</h1>-->
+
+    <div class="container">
+      <!-- average -->
+      <div class="row">
+        <div class="col text-right">average at 475-512</div>
+        <div class="col text-left"><p id="avg" class=""></p></div>
+      </div>
+
+      <!-- max -->
+      <div class="row">
+        <div class="col text-right">max value at 475-512</div>
+        <div class="col text-left"><p id="max" class=""></p></div>
+      </div>
+
+      <!-- index -->
+      <div class="row">
+        <div class="col text-right">index</div>
+        <div class="col text-left"><p id="myindex" class=""></p></div>
+      </div>
+
+    </div>
+    <div class="container">
+      <div id="alert-buzz" class="font-weight-bold alert alert-primary text-center" role="alert">Buzz detection</div>
+    </div>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -22,8 +47,10 @@
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/data.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="{{url_for('static', filename='myinit.js')}}"></script>
     <script src="{{url_for('static', filename='myanalyze.js')}}"></script>
-    <script src="{{url_for('static', filename='mywaveform.js')}}"></script>
+    <!--<script src="{{url_for('static', filename='mywaveform.js')}}"></script>-->
+    <script src="{{url_for('static', filename='myspectrum.js')}}"></script>
   </body>
 </html>
 

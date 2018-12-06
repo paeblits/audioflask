@@ -15,18 +15,19 @@ Highcharts.chart('container-spectrum', {
                     $.getJSON('http://localhost:5000/spectrumfeed', function(data) {
                         //console.log(data)
                         series.setData(data);
+                        analyze(data);
                     });
                 }, 50);
             }
         }
     },
     title: {
-        text: 'Frequency Spectrum'
+        text: 'Fast Fourier Transform'
     },
 
     subtitle: {
         text: 'Live data stream from microphone'
-    }
+    },
 
 //
 //    data: {
@@ -37,8 +38,8 @@ Highcharts.chart('container-spectrum', {
 //        dataRefreshRate: 1
 //    },
 
-//    yAxis: {
-//        min: 0,
-//        max: 250
-//    }
+    yAxis: {
+        min: 0,
+        max: 1
+    }
 });

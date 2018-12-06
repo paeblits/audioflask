@@ -87,8 +87,12 @@ def get_sound_freq():
     #data_np = np.array(data_int, dtype='b')[::2] + 128
 
     yf = fft(data_int)
-    yff = np.abs(yf[0:CHUNK]) / (128 * CHUNK)
+    a = yf[0:CHUNK]
+    a1 = np.abs(a)
+    b = (128 * CHUNK)
+    spectrum_data = a1 / b
+    result = spectrum_data[::4]
 
-    x = yff.tolist()
+    x = result.tolist()
 
     yield str(x)
