@@ -35,16 +35,16 @@ ls -l /usr/bin/ | grep python
 
 3. Install pyaudio dependencies, then pyaudio
 ```sh
-$ sudo apt-get install libasound-dev portaudio19-dev libportaudiocpp0 ffmpeg libav-tools libportaudio2
-$ sudo python3 -m pip install pyaudio
+$ sudo apt-get install libasound-dev portaudio19-dev libportaudiocpp0 ffmpeg libav-tools libportaudio2 libatlas-base-dev
+$ sudo pip3 install pyaudio
 ```
 
-4. Install other Python 3 dependencies: flask, and scipy
+4. Install other Python 3 dependencies: scipy (Flask is likely already installed)
 ```sh
-$ sudo python3 -m pip install flask scipy
+$ sudo pip3 install scipy
 ```
 
-5. Clone the repository
+5. Clone this repository
 ```sh
 git clone https://github.com/paeblits/audioflask.git
 ```
@@ -52,8 +52,8 @@ git clone https://github.com/paeblits/audioflask.git
 6. Set up environment variables for Flask. You can append a variable to your `.profile`
 ```sh
 $ nano ~/.profile
-export FLASK_APP=/path/to/your/flask_app.py
-save the file and exit
+export FLASK_APP=/path/to/your/audioflask/app.py
+save the file, exit, and source it
 $ source .profile
 ```
 
@@ -64,5 +64,5 @@ $ source .profile
 
 8. run the app
 ```sh
-flask run
+python3 -m flask run
 ```
