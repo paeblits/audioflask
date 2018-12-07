@@ -4,12 +4,12 @@ A Flask app that hosts a simple webapp that:
 1. Streams microphone audio from a cheap microphone on a Raspberry Pi 3B
 2. Performs a fast fourier transform (fft) using scipy.fftpack
 3. Displays the frequency spectrum using Highcharts
-4. Monitors for a specific dryer "buzz" sound
+4. Monitors for a specific dryer "buzz" sound (currently in a non-sophisticated way)
 5. Notifies people via text message
 
-A necessary improvement is learning the dryer buzz sound with a nerual network and listening for that.
+This app currently looks in specific frequencies to detect the specific sound. An improvement would be to implement a neural network that can learn any sound pattern and monitor for that.
 
-Credit to:
+Credit and Resources:
 *But what is the Fourier Transform? A visual introduction.*
 [https://www.youtube.com/watch?v=spUNpyF58BY]
 
@@ -21,7 +21,7 @@ Credit to:
 - Python 3.6
 - flask 1.0.2
 - pyaudio 0.2.11
-- numpy 1.14
+- numpy 1.15.4
 - scipy 1.1
 - highcharts 6.2
 - bootstrap 4.1.3
