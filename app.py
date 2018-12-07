@@ -22,7 +22,7 @@ info = p.get_host_api_info_by_index(0)
 numdevices = info.get('deviceCount')
 for i in range(0, numdevices):
     if (p.get_device_info_by_host_api_device_index(0, i).get('maxInputChannels')) > 0:
-        print("Input Device id ", i, " - ", p.get_device_info_by_host_api_device_index(0, i).get('name'))
+        print("i = " + str(i) + ". Input Device id = ", i, " - ", p.get_device_info_by_host_api_device_index(0, i).get('name'))
 
 print("\n - - -")
 print("SELECTED Input Device id ", DEVICE_INDEX, " - ", p.get_device_info_by_host_api_device_index(0, DEVICE_INDEX).get('name'))
@@ -39,7 +39,7 @@ stream = p.open(
     rate=RATE,
     input=True,
     output=True,
-    input_device_index=DEVICE_INDEX,
+    #input_device_index=DEVICE_INDEX,
     frames_per_buffer=CHUNK
 )
 
