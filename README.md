@@ -18,6 +18,7 @@ Credit and Resources:
 
 
 ## dependencies
+- Linux distribution, such as Raspbian Stretch
 - Python 3.6
 - flask 1.0.2
 - pyaudio 0.2.11
@@ -27,31 +28,20 @@ Credit and Resources:
 - bootstrap 4.1.3
 
 ## installation
-I'm using Raspbian Stretch for this deployment. In Raspbian:
-
-1. Install dev tools if you haven't already
+I'm using Raspbian Stretch 4.14 for this deployment. It should come with Python 3. You can check `/usr/bin/`:
 ```sh
-$ sudo apt-get install build-essential tk-dev libncurses5-dev libncursesw5-dev libreadline6-dev libdb5.3-dev libgdbm-dev libsqlite3-dev libssl-dev libbz2-dev libexpat1-dev liblzma-dev zlib1g-dev
-```
-2. Download and install Python 3.6
-```sh
-$ wget https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tar.xz
-$ tar xf Python-3.6.5.tar.xz
-$ cd Python-3.6.5
-$ ./configure
-$ make
-$ sudo make altinstall
+ls -l /usr/bin/ | grep python
 ```
 
 3. Install pyaudio dependencies, then pyaudio
 ```sh
 $ sudo apt-get install libasound-dev portaudio19-dev libportaudiocpp0 ffmpeg libav-tools libportaudio2
-$ sudo pip install pyaudio
+$ sudo python3 -m pip install pyaudio
 ```
 
-4. Install flask, numpy, scipy
+4. Install other Python 3 dependencies: flask, and scipy
 ```sh
-$ sudo pip install flask numpy scipy pyaudio
+$ sudo python3 -m pip install flask scipy
 ```
 
 5. Clone the repository
@@ -59,9 +49,12 @@ $ sudo pip install flask numpy scipy pyaudio
 git clone https://github.com/paeblits/audioflask.git
 ```
 
-6. Set up environment variables for Flask
+6. Set up environment variables for Flask. You can append a variable to your `.profile`
 ```sh
-setx FLASK_APP=/path/to/your/flask_app.py
+$ nano ~/.profile
+export FLASK_APP=/path/to/your/flask_app.py
+save the file and exit
+$ source .profile
 ```
 
 7. Open firewall port
