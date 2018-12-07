@@ -2,12 +2,9 @@ from flask import Flask, request, render_template, Response, stream_with_context
 
 # AUDIO imports
 import pyaudio
-import os
 import struct
 import numpy as np
-import matplotlib.pyplot as plt
 from scipy.fftpack import fft
-import time
 
 app = Flask(__name__)
 

@@ -17,30 +17,43 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-md justify-content-center" id="container-spectrum" style="min-width: 310px; height: 600px; margin: 0 auto"></div>
+        <div class="col-md" id="container-spectrum" style="min-width: 310px; height: 600px; margin: 0 auto"></div>
       </div>
     </div>
 
     <hr>
 
+    <!-- Metrics and inputs -->
     <div class="container">
-      <!-- average -->
-      <div class="row">
-        <div class="col text-right">average at 475-512</div>
-        <div class="col text-left"><p id="avg" class=""></p></div>
-      </div>
 
-      <!-- max -->
-      <div class="row">
-        <div class="col-sm text-right">max value at 475-512</div>
-        <div class="col-sm text-left"><p id="max" class=""></p></div>
-      </div>
+      <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">input/variable</th>
+            <th scope="col">output</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!--<tr>-->
+          <!--<td id="buzzCountThresh"></td>-->
+          <!--<td><input type="range" min="1" max="10" value="5" class="slider" id="myRange"></td>-->
+          <!--</tr>-->
+          <tr>
+            <td>average</td>
+            <td id="avg"></td>
+          </tr>
+          <tr>
+            <td>max value</td>
+            <td id="max"></td>
+          </tr>
+          <tr>
+            <td>max index</td>
+            <td id="myindex"></td>
+          </tr>
+        </tbody>
+      </table>
 
-      <!-- index -->
-      <div class="row">
-        <div class="col text-right">max value index</div>
-        <div class="col text-left"><p id="myindex" class=""></p></div>
-      </div>
+    </div>
 
     </div>
 
